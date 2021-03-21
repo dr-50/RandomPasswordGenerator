@@ -2,10 +2,20 @@
 var charsAll = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f',
   'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M']
 
-var charsNoSpecials = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f',
-'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M']
-
 var charSpecialOnly = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '=', '+']
+
+var charNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+
+var charLowerAlpha = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f','g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm']
+
+var charUpperAlpha = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M']
+
+var inputArray=[];
+var resultArray = [];
+
+var responseCount = 0;
+  
+
 
 function generatePassword() {
   // asks user the length of the password
@@ -17,54 +27,61 @@ function generatePassword() {
     return generatePassword();
   }
   else {
+    //asking if the user would like special characters and log a single character to be added to the resultArray if user selects Yes
+   var passwordSpecialCharsResponse = window.prompt("Would you like special characters? Enter YES or NO.");
+    passwordSpecialCharsResponse=passwordSpecialCharsResponse.toLowerCase();
+    if (passwordSpecialCharsResponse==="yes" || passwordSpecialCharsResponse==="y"){
+      inputArray.push(charSpecialOnly);
+      responseCount++;
+      charSpecial=charSpecialOnly[Math.floor(Math.random()*charSpecialOnly.length)];
+      resultArray=resultArray.concat(charSpecial);
+    }
 
-   var passwordSpecialChars = window.prompt("Would you like special characters? Enter YES or NO.")
-  passwordSpecialChars=passwordSpecialChars.toLowerCase();
-  console.log(passwordSpecialChars);
-
-    if (passwordSpecialChars.toLowerCase()==="yes" || passwordSpecialChars.toLowerCase()==="no"){
-
-  // if (passwordSpecialChars.toLocaleLowerCase!=="yes" || passwordSpecialChars.toLocaleLowerCase!=="no") {
-  //   window.alert("You need to provide a valid answer! Please try again.");
-  //   return passwordSpecialChars;
-  // }
-  
-  if (passwordSpecialChars==="yes") {
+    //asking if the user would like numbers and log a single character to be added to the resultArray if user selects Yes
+    var passwordNumberCharResponse=window.prompt("Would you like numbers? Enter YES or NO");
+    passwordNumberCharResponse=passwordNumberCharResponse.toLowerCase();
+    if(passwordNumberCharResponse==="yes" || passwordNumberCharResponse==="y"){
+      inputArray.push(charNumbers);
+      responseCount++;
+      charNum=charNumbers[Math.floor(Math.random()*charNumbers.length)];
+      resultArray=resultArray.concat(charNum);
+    }
     
-    // loops through the arry for random characters
-
-    specialChar=charSpecialOnly[Math.floor(Math.random()* charSpecialOnly.length)];
-
-    var resultArray = [];
-    for (var i = 0; i < passwordLength - 1; i++) {
-      var randomItem = charsAll[Math.floor(Math.random() * charsAll.length)];
-      resultArray.push(randomItem);
+    //asking if the user would like lower case characters and log a single character to be added to the resultArray if user selects Yes
+    var passwordLowerCaseResponse=window.prompt("Would you like lower case characters? Enter YES or NO");
+    passwordLowerCaseResponse=passwordLowerCaseResponse.toLowerCase();
+    if(passwordLowerCaseResponse==="yes"|| passwordLowerCaseResponse==="y"){
+      inputArray.push(charLowerAlpha);
+      responseCount++;
+      charLower=charLowerAlpha[Math.floor(Math.random()*charLowerAlpha.length)];
+      resultArray=resultArray.concat(charLower);
     }
-    return resultArray.join("").concat(specialChar);
-
-  }
-  else if (passwordSpecialChars==="no"){
- 
-    // loops through the arry for random characters no special characters
-    var resultArrayNo=[];
-    for (var i=0; i<passwordLength; i++) {
-      var randomItems = charsNoSpecials[Math.floor(Math.random()*charsNoSpecials.length)];
-      resultArrayNo.push(randomItems)
+  
+    //asking if the user would like uppper case characters and log a single character to be added to the resultArray if user selects Yes
+    var passwordUpperCaseResponse=window.prompt("Would you like upper case characters? Enter YES or NO");
+    passwordUpperCaseResponse=passwordUpperCaseResponse.toLowerCase();
+    if(passwordUpperCaseResponse==="yes"||passwordUpperCaseResponse==="y"){
+      inputArray.push(charUpperAlpha);
+      responseCount++;
+      charUpper=charUpperAlpha[Math.floor(Math.random()*charUpperAlpha.length)];
+      resultArray=resultArray.concat(charUpper);
     }
-    return resultArrayNo.join("")
-  }
-}
-else {
-  alert("Please enter Yes or No");
-  return generatePassword();
-}
+    inputArray.join("");
 }
 
-  // else {
-  //   alert("Please enter a correct response")
-  // }
+//subtract number of additional character arrays from total password length
+var baseCharCount=passwordLength-responseCount;
+
+//loop through inputArray to get base password
+
+for (var i = 0; i < baseCharCount; i++) {
+  var randomItem = inputArray[Math.floor(Math.random([i]) * inputArray.length)];
+  resultArray.push(randomItem[i]);
 }
 
+return resultArray.join('');
+
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
