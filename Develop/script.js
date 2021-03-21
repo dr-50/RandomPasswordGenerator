@@ -15,7 +15,9 @@ var resultArray = [];
 
 var responseCount = 0;
   
-
+function shuffle(array){
+  array.sort(() => Math.random()-.5);
+}
 
 function generatePassword() {
   // asks user the length of the password
@@ -79,6 +81,7 @@ for (var i = 0; i < baseCharCount; i++) {
   resultArray.push(randomItem[i]);
 }
 
+shuffle(resultArray);
 return resultArray.join('');
 
 }
