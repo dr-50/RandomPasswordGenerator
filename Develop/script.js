@@ -14,6 +14,7 @@ var inputArray=[];
 var resultArray = [];
 
 var responseCount = 0;
+
   
 function shuffle(array){
   array.sort(() => Math.random()-.5);
