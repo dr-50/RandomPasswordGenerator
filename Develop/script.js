@@ -21,6 +21,11 @@ function shuffle(array){
 }
 
 function generatePassword() {
+  //reset arrays to blank and responseCount to 0 for multiple runs
+  inputArray=[];
+  resultArray=[];
+  responseCount=0;
+
   // asks user the length of the password
   var passwordLength = window.prompt("How long would you like your password to be? Enter a number between 8 and 128.");
   passwordLength=parseInt(passwordLength);
@@ -39,6 +44,10 @@ function generatePassword() {
       charSpecial=charSpecialOnly[Math.floor(Math.random()*charSpecialOnly.length)];
       resultArray=resultArray.concat(charSpecial);
     }
+    else if (passwordSpecialCharsResponse!=="yes" || passwordSpecialCharsResponse!=="y" || passwordSpecialCharsResponse!=="no"||passwordSpecialCharsResponse!=="n"){
+      alert("Please enter a valid response.");
+      return generatePassword();
+    }
 
     //asking if the user would like numbers and log a single character to be added to the resultArray if user selects Yes
     var passwordNumberCharResponse=window.prompt("Would you like numbers? Enter YES or NO");
@@ -48,6 +57,10 @@ function generatePassword() {
       responseCount++;
       charNum=charNumbers[Math.floor(Math.random()*charNumbers.length)];
       resultArray=resultArray.concat(charNum);
+    }
+    else if (passwordNumberCharResponse!=="yes" || passwordNumberCharResponse!=="y" || passwordNumberCharResponse!=="no"||passwordNumberCharResponse!=="n") {
+      alert("Please enter a valid response.");
+      return generatePassword();
     }
     
     //asking if the user would like lower case characters and log a single character to be added to the resultArray if user selects Yes
@@ -59,6 +72,10 @@ function generatePassword() {
       charLower=charLowerAlpha[Math.floor(Math.random()*charLowerAlpha.length)];
       resultArray=resultArray.concat(charLower);
     }
+    else if (passwordLowerCaseResponse!=="yes" || passwordLowerCaseResponse!=="y" || passwordLowerCaseResponse!=="no"|| passwordLowerCaseResponse!=="n") {
+      alert("Please enter a valid response.");
+      return generatePassword();
+    }
   
     //asking if the user would like uppper case characters and log a single character to be added to the resultArray if user selects Yes
     var passwordUpperCaseResponse=window.prompt("Would you like upper case characters? Enter YES or NO");
@@ -69,6 +86,12 @@ function generatePassword() {
       charUpper=charUpperAlpha[Math.floor(Math.random()*charUpperAlpha.length)];
       resultArray=resultArray.concat(charUpper);
     }
+    else if (passwordUpperCaseResponse!=="yes" || passwordUpperCaseResponse!=="y" || passwordUpperCaseResponse!=="no"|| passwordUpperCaseResponse!=="n"){
+      alert("Please enter a valid response.");
+      return generatePassword();
+    }
+
+
     inputArray.join("");
 }
 
@@ -86,6 +109,7 @@ shuffle(resultArray);
 return resultArray.join('');
 
 }
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
