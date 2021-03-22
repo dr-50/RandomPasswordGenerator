@@ -1,15 +1,15 @@
-## Password Generator
+# Password Generator
 
-# Purpose
+## Purpose
 A website that generates random passwords for users based on responses to prompts
 
-# Built with
+## Built with
 * HTML
 * CSDS
 
-# Website
+## Website
 https://dr-50.github.io/RandomPasswordGenerator/
 
-# Contribution
+## Contribution
 Created by Devon Ross
 
